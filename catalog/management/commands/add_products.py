@@ -3,7 +3,7 @@ from django.core.management import call_command
 from catalog.models import Category, Product
 
 class Command(BaseCommand):
-    help = 'Add products to the database'
+    help = 'Add catalog to the database'
 
     def handle(self, *args, **kwargs):
         # Удаляем существующие записи
