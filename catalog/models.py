@@ -53,22 +53,28 @@ class Product(models.Model):
         related_name="Products",
     )
     price = models.DecimalField(
-        max_digits=10, decimal_places=2, verbose_name="Цена продукта", help_text="Введите цену продукта"
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="Цена продукта",
+        help_text="Введите цену продукта",
     )
     created_at = models.DateTimeField(
-        auto_now_add=True, verbose_name="Дата создания", help_text="Введите дату создания"
+        auto_now_add=True,
+        verbose_name="Дата создания",
+        help_text="Введите дату создания",
     )
     updated_at = models.DateTimeField(
-        auto_now=True, verbose_name="Дата последнего изменения",
+        auto_now=True,
+        verbose_name="Дата последнего изменения",
         help_text="Введите дату последнего изменения",
     )
 
     views_counter = models.PositiveIntegerField(
         verbose_name="счетчик просмотров",
         help_text="Укажите количество просмотров",
-        default=0
-
+        default=0,
     )
+
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
