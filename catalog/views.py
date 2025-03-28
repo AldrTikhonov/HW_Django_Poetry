@@ -7,6 +7,7 @@ from django.views.generic import (
     DeleteView,
 )
 
+from catalog.forms import ProductForm
 from catalog.models import Product
 
 
@@ -26,13 +27,15 @@ class ProductDetailView(DetailView):
 
 class ProductCreateView(CreateView):
     model = Product
-    fields = ("name", "image", "category", "price")
+    form_class = ProductForm
+    template_name = 'catalog/product_form.html'
     success_url = reverse_lazy("catalog:products_list")
 
 
 class ProductUpdateView(UpdateView):
     model = Product
-    fields = ("name", "image", "category", "price")
+    form_class = ProductForm
+    template_name = 'catalog/product_form.html'
     success_url = reverse_lazy("catalog:products_list")
 
     def get_success_url(self):
