@@ -14,8 +14,12 @@
                 <div class="btn-group">
                   <div class="text-center">
                     <a class="btn btn-primary" href="{% url 'catalog:products_detail' product.pk %}" role="button">Просмотр</a>
-                    <a class="btn btn-primary" href="{% url 'catalog:products_update' product.pk %}" role="button">Редактирование</a>
-                    <a class="btn btn-primary" href="{% url 'catalog:products_delete' product.pk %}" role="button">Удаление</a>
+                    {% if product.owner == user %}
+                      <a class="btn btn-primary" href="{% url 'catalog:products_update' product.pk %}" role="button">Редактирование</a>
+                    {% endif %}
+                    {% if product.owner == user or 'catalog.delete_product' in perms %}
+                      <a class="btn btn-primary" href="{% url 'catalog:products_delete' product.pk %}" role="button">Удаление</a>
+                    {% endif %}
                   </div>
                 </div>
               </div>
