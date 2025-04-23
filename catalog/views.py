@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from catalog.forms import ProductForm
 from catalog.models import Product
+from catalog.services import get_products_from_cache
 
 
 class UnpublishedProductView(LoginRequiredMixin, View):
@@ -24,6 +25,9 @@ class UnpublishedProductView(LoginRequiredMixin, View):
 
 class ProductListView(ListView):
     model = Product
+
+    def get_queryset(self):
+        return get_products_from_cache()
 
 
 class ProductDetailView(DetailView):
