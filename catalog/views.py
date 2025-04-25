@@ -6,8 +6,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from catalog.forms import ProductForm
-from catalog.models import Product
-from catalog.services import get_products_from_cache
+from catalog.models import Product, Category
+from catalog.services import get_products_from_cache, get_products_by_category
 
 
 class UnpublishedProductView(LoginRequiredMixin, View):
@@ -28,6 +28,18 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         return get_products_from_cache()
+
+
+class ProductsByCategoryView(ListView):
+    model = Category
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('pk')
+        return get_products_by_category(category_id=category_id)
+
+
+class CategoryListView(ListView):
+    model = Category
 
 
 class ProductDetailView(DetailView):
